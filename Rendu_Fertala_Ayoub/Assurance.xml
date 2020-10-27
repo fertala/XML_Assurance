@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ASSURANCE  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="Assurance.xsd">
+
+    <RISQUES>
+        <Risque RisqueId="R-ID-1">
+            <Niveau>Elevée</Niveau>
+            <Multiplicateur>1.5</Multiplicateur>
+        </Risque>
+	<Risque RisqueId="R-ID-2">
+            <Niveau>Moyen</Niveau>
+            <Multiplicateur>1.25</Multiplicateur>
+        </Risque>
+	<Risque RisqueId="R-ID-3">
+            <Niveau>Faible</Niveau>
+            <Multiplicateur>1</Multiplicateur>
+        </Risque>
+    </RISQUES>
+
+    <CATEGORIES>
+        <Categorie CategorieName="Ctg-1">
+            <NAME>Voiture</NAME>
+        </Categorie>
+        <Categorie CategorieName="Ctg-2">
+            <NAME>Immobilier</NAME>
+        </Categorie>
+        <Categorie CategorieName="Ctg-3">
+            <NAME>Vie</NAME>
+        </Categorie>
+        <Categorie CategorieName="Ctg-4">
+            <NAME>Voyage</NAME>
+        </Categorie>
+    </CATEGORIES>
+
+    <OPTIONS>
+        <Option OptionId="O-ID-1">
+            <Categorie CategorieName="Ctg-1"/>
+            <Type>vitres</Type>
+            <Prix>800</Prix>
+        </Option>
+        <Option OptionId="O-ID-2">
+            <Categorie CategorieName="Ctg-1"/>
+            <Type>tout risque</Type>
+            <Prix>4000</Prix>
+        </Option>
+        <Option OptionId="O-ID-3">
+            <Categorie CategorieName="Ctg-1"/>
+            <Type>pneu</Type>
+            <Prix>600</Prix>
+        </Option>
+        <Option OptionId="O-ID-4">
+            <Categorie CategorieName="Ctg-2"/>
+            <Type>inondation</Type>
+            <Prix>400</Prix> 
+        </Option>
+    </OPTIONS>
+
+    <CLIENTS>
+        <Client ClientId="C-ID-1">
+            <Nom>Dubois</Nom>
+            <Prenom>Nicolas</Prenom>
+            <Age>32</Age>
+            <Telephone>0654129827</Telephone>
+            <EMAIL>nicolasdubois@gmail.com</EMAIL>
+        </Client>
+        <Client ClientId="Cl-ID-2">
+            <Nom>Féret</Nom>
+            <Prenom>Omer</Prenom>
+            <Age>24</Age>
+            <Telephone>0632844309</Telephone>
+            <EMAIL>fereomar1964@gmail.com</EMAIL>
+        </Client>
+        <Client ClientId="Cl-ID-3">
+            <Nom>Caillat</Nom>
+            <Prenom>Emmanuel </Prenom>
+            <Age>44</Age>
+            <Telephone>0710345692</Telephone>
+            <EMAIL>caillatem1987@gmail.com</EMAIL>
+        </Client>
+        <Client ClientId="Cl-ID-4">
+            <Nom>Kaplan</Nom>
+            <Prenom>Cécile</Prenom>
+            <Age>37</Age>
+            <Telephone>0698218420</Telephone>
+            <EMAIL>kaplanceciles@gmail.com</EMAIL>
+        </Client>
+        <Client ClientId="Cl-ID-5">
+            <Nom>Levasseur</Nom>
+            <Prenom>Ève</Prenom>
+            <Age>55</Age>
+            <Telephone>0701237134</Telephone>
+            <EMAIL>levasseureve@gmail.com</EMAIL>
+        </Client>
+        <Client ClientId="Cl-ID-6">
+            <Nom>Ferala</Nom>
+            <Prenom>Pierre</Prenom>
+            <Age>79</Age>
+            <Telephone>0601223134</Telephone>
+            <EMAIL>fpierre@gmail.com</EMAIL>
+        </Client>
+    </CLIENTS>
+
+    <CONSEILLERS>
+        <Conseiller ConseillerId="Co-ID-1">
+            <Nom>Boisselot</Nom>
+            <Prenom>Rachel</Prenom>
+            <Telephone>0610293845</Telephone>
+            <EMAIL>boisselotrachel@gmail.com</EMAIL>
+        </Conseiller>
+        <Conseiller ConseillerId="Co-ID-2">
+            <Nom>Garreau</Nom>
+            <Prenom>Maxence</Prenom>
+            <Telephone>0632813993</Telephone>
+            <EMAIL>garreauzwin@gmail.com</EMAIL>
+        </Conseiller>
+        <Conseiller ConseillerId="Co-ID-3">
+            <Nom>Timothé</Nom>
+            <Prenom>Moreaus</Prenom>
+            <Telephone>0773109230</Telephone>
+            <EMAIL>timothé1977@gmail.com</EMAIL>
+        </Conseiller>
+        <Conseiller ConseillerId="Co-ID-4">
+            <Nom>Simon</Nom>
+            <Prenom>Valéry</Prenom>
+            <Telephone>0655991234</Telephone>
+            <EMAIL>simonvalery@gmail.com</EMAIL>
+        </Conseiller>
+    </CONSEILLERS>
+
+    <AGENCE>
+        <Agence AgenceId="Jean medecin">
+            <VILLE>Nice</VILLE>
+            <Conseiller ConseillerId="1"/>
+            <Conseiller ConseillerId="4"/>
+        </Agence>
+        <Agence AgenceId="Champs Elysee">
+            <VILLE>Paris</VILLE>
+            <Conseiller ConseillerId="2"/>
+            <Conseiller ConseillerId="3"/>
+        </Agence>
+    </AGENCE>
+
+    <CONTRATS>
+        <Contrat ContratId="Ctr-ID-102">
+            <DateDebut>19/11/2020</DateDebut>
+            <DateFin>18/04/2022</DateFin>
+            <Client ClientId="C-ID-1"/>
+            <Conseiller ConseillerId="Co-ID-3"/>
+            <Option OptionId="O-ID-4"/>
+            <Risque RisqueId="R-ID-1"/>
+        </Contrat>
+        <Contrat ContratId="Ctr-ID-154">
+            <DateDebut>27/01/2016</DateDebut>
+            <DateFin>26/04/2026</DateFin>
+            <Client ClientId="C-ID-1"/>
+            <Conseiller ConseillerId="Co-ID-1"/>
+            <Option OptionId="O-ID-2"/>
+            <Risque RisqueId="R-ID-1"/>
+        </Contrat>
+        <Contrat ContratId="Ctr-ID-130">
+            <DateDebut>28/08/2019</DateDebut>
+            <DateFin>27/04/2021</DateFin>
+            <Client ClientId="C-ID-3"/>
+            <Conseiller ConseillerId="Co-ID-2"/>
+            <Option OptionId="O-ID-3"/>
+            <Risque RisqueId="R-ID-1"/>
+        </Contrat>
+        <Contrat ContratId="Ctr-ID-213">
+            <DateDebut>22/09/2019</DateDebut>
+            <DateFin>21/04/2023</DateFin>
+            <Client ClientId="C-ID-2"/>
+            <Conseiller ConseillerId="Co-ID-4"/>
+            <Option OptionId="O-ID-4"/>
+            <Risque RisqueId="R-ID-1"/>
+        </Contrat>
+        <Contrat ContratId="Ctr-ID-112">
+            <DateDebut>02/12/2017</DateDebut>
+            <DateFin>03/12/2020</DateFin>
+            <Client ClientId="C-ID-5"/>
+            <Conseiller ConseillerId="Co-ID-1"/>
+            <Option OptionId="O-ID-3"/>
+            <Risque RisqueId="R-ID-1"/>
+        </Contrat>
+        <Contrat ContratId="Ctr-ID-312">
+            <DateDebut>22/10/2018</DateDebut>
+            <DateFin>21/10/2020</DateFin>
+            <Client ClientId="C-ID-6"/>
+            <Conseiller ConseillerId="Co-ID-2"/>
+            <Option OptionId="O-ID-2"/>
+            <Risque RisqueId="R-ID-3"/>
+        </Contrat>
+    </CONTRATS>
+</ASSURANCE>

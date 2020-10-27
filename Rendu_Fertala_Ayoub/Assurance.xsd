@@ -1,0 +1,257 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="ASSURANCE" type="AssuranceType"/>
+
+     
+    <xs:element name="RISQUES">
+        <xs:key name="RisqueKEY">
+            <xs:selector xpath="RISQUES/Risque"/>
+            <xs:field xpath="@RisqueId"/>
+        </xs:key>
+
+        <xs:keyref name="RisqueREF" refer="RisqueKEY">
+                <xs:selector xpath="CONTRATS/Contrat/Risque"/>
+                <xs:field xpath="@RisqueId"/>
+        </xs:keyref>
+    </xs:element>
+
+    <xs:element name="CATEGORIES">
+        <xs:key name="CategorieKEY">
+            <xs:selector xpath="CATEGORIES/Categorie"/>
+            <xs:field xpath="@CategorieName"/>
+        </xs:key>
+
+        <xs:keyref name="CategorieREF" refer="CategorieKEY">
+                <xs:selector xpath="OPTIONS/Option/Categorie"/>
+                <xs:field xpath="@CategorieName"/>
+        </xs:keyref>
+    </xs:element>
+
+    <xs:element name="OPTIONS">
+        <xs:key name="OptionKEY">
+            <xs:selector xpath="OPTIONS/option"/>
+            <xs:field xpath="@OptionId"/>
+        </xs:key>
+
+        <xs:keyref name="OptionREF" refer="OptionKEY">
+                <xs:selector xpath="CONTRATS/Contrat/Option"/>
+                <xs:field xpath="@OptionId"/>
+        </xs:keyref>
+    </xs:element>
+
+    <xs:element name="CLIENTS">
+        <xs:key name="ClientKEY">
+            <xs:selector xpath="CLIENTS/Client"/>
+            <xs:field xpath="@ClientId"/>
+        </xs:key>
+
+        <xs:keyref name="ClientREF" refer="ClientKEY">
+                <xs:selector xpath="CONTRATS/Contrat/Client"/>
+                <xs:field xpath="@ClientId"/>
+        </xs:keyref>
+    </xs:element>
+
+    <xs:element name="CONSEILLERS">
+        <xs:key name="ConseillerKEY">
+            <xs:selector xpath="CONSEILLERS/Conseiller"/>
+            <xs:field xpath="@ConseillerId"/>
+        </xs:key>
+
+        <xs:keyref name="ConseillerREF" refer="ConseillerKEY">
+                <xs:selector xpath="CONTRATS/Contrat/Conseiller"/>
+                <xs:field xpath="@ConseillerId"/>
+        </xs:keyref>
+    </xs:element>
+
+    <xs:element name="AGENCE">
+        <xs:key name="AgenceKEY">
+            <xs:selector xpath="AGENCE/Agence"/>
+            <xs:field xpath="@AgenceId"/>
+        </xs:key>
+
+        <xs:keyref name="AgenceREF" refer="AgenceKEY">
+                <xs:selector xpath="CONTRATS/Contrat/Agence"/>
+                <xs:field xpath="@AgenceId"/>
+        </xs:keyref>
+    </xs:element>
+
+    <xs:element name="CONTRATS">
+        <xs:key name="ContratKEY">
+            <xs:selector xpath="CONTRATS/Contrat"/>
+            <xs:field xpath="@ContratId"/>
+        </xs:key>
+
+        <xs:keyref name="ContratREF" refer="ContratKEY">
+                <xs:selector xpath="CONTRATS/Contrat"/>
+                <xs:field xpath="@ContratId"/>
+        </xs:keyref>
+    </xs:element>
+
+
+   
+
+    <xs:complexType name="AssuranceType">
+        <xs:sequence>
+            <xs:element name="RISQUES" type="RisquesType"/>
+            <xs:element name="CATEGORIES" type="CategoriesType"/>
+            <xs:element name="OPTIONS" type="OptionsType"/>
+            <xs:element name="CLIENTS" type="ClientsType"/>
+            <xs:element name="CONSEILLERS" type="ConseillersType"/>
+            <xs:element name="AGENCE" type="AgenceType"/>
+            <xs:element name="CONTRATS" type="ContratsType"/>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    
+    <xs:complexType name="RisquesType">
+    <xs:sequence>
+        <xs:element name="Risque" minOccurs="1" maxOccurs="unbounded">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Niveau" type="xs:string"/>
+                <xs:element name="Multiplicateur" type="xs:string"/>
+            </xs:sequence>
+            <xs:attribute name="RisqueId" use="required" type="xs:ID"/>
+        </xs:complexType>
+        </xs:element>
+    </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CategoriesType">
+    <xs:sequence>
+        <xs:element name="Categorie" minOccurs="1" maxOccurs="unbounded">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="NAME" type="xs:string"/>
+            </xs:sequence>
+            <xs:attribute name="CategorieName" use="required" type="xs:ID"/>
+        </xs:complexType>
+        </xs:element>
+    </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="OptionsType">
+        <xs:sequence>
+        <xs:element name="Option" minOccurs="1" maxOccurs="unbounded">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Categorie" minOccurs="1" maxOccurs="1">
+                    <xs:complexType >
+                        <xs:attribute name="CategorieName" type="xs:string" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Type" type="xs:string"/>
+                <xs:element name="Prix" type="xs:string"/>            
+            </xs:sequence>
+            <xs:attribute name="OptionId" use="required" type="xs:ID"/>
+        </xs:complexType>
+        </xs:element>
+    </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ClientsType">
+        <xs:sequence>
+        <xs:element name="Client" minOccurs="1" maxOccurs="unbounded">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Nom" type="xs:string"/>
+                <xs:element name="Prenom" type="xs:string"/>
+                <xs:element name="Age" type="xs:integer"/>
+                <xs:element name="Telephone" type="telephoneType"/>
+                <xs:element name="EMAIL" type="emailType"/>            
+                </xs:sequence>
+            <xs:attribute name="ClientId" use="required" type="xs:ID"/>
+        </xs:complexType>
+        </xs:element>
+    </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ConseillersType">
+        <xs:sequence>
+        <xs:element name="Conseiller" minOccurs="1" maxOccurs="unbounded">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="Nom" type="xs:string"/>
+                <xs:element name="Prenom" type="xs:string"/>
+                <xs:element name="Telephone" type="telephoneType"/>
+                <xs:element name="EMAIL" type="emailType"/>            
+            </xs:sequence>
+            <xs:attribute name="ConseillerId" use="required" type="xs:ID"/>
+        </xs:complexType>
+        </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:complexType name="AgenceType">
+        <xs:sequence>
+        <xs:element name="Agence" minOccurs="1" maxOccurs="unbounded">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="VILLE" type="xs:string"/>
+                <xs:element name="Conseiller" minOccurs="1" maxOccurs="unbounded">
+                    <xs:complexType >
+                        <xs:attribute name="ConseillerId" type="xs:integer" />
+                    </xs:complexType>
+                </xs:element>           
+                </xs:sequence>
+            <xs:attribute name="AgenceId"/>
+        </xs:complexType>
+        </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ContratsType">
+        <xs:sequence>
+        <xs:element name="Contrat" minOccurs="1" maxOccurs="unbounded">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="DateDebut" type="DateType"/>
+                <xs:element name="DateFin" type="DateType"/>
+                <xs:element name="Client" minOccurs="1" maxOccurs="1">
+                    <xs:complexType >
+                        <xs:attribute name="ClientId" type="xs:string" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Conseiller" minOccurs="1" maxOccurs="1">
+                    <xs:complexType >
+                        <xs:attribute name="ConseillerId" type="xs:string" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Option" minOccurs="1" maxOccurs="unbounded">
+                    <xs:complexType >
+                        <xs:attribute name="OptionId" type="xs:string" />
+                    </xs:complexType>
+                </xs:element>
+                <xs:element name="Risque" minOccurs="1" maxOccurs="1">
+                    <xs:complexType >
+                        <xs:attribute name="RisqueId" type="xs:string" />
+                    </xs:complexType>
+                </xs:element>       
+            </xs:sequence>
+            <xs:attribute name="ContratId" use="required" type="xs:ID"/>
+        </xs:complexType>
+        </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    
+    <xs:simpleType name="DateType">
+        <xs:restriction base="xs:string">
+        <xs:pattern value="\d{2}/\d{2}/\d{4}"/>
+        </xs:restriction>
+
+    </xs:simpleType>
+
+    <xs:simpleType name="emailType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="[^@]+@[^\.]+\..+"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+
+    <xs:simpleType name="telephoneType">
+        <xs:restriction base="xs:integer">
+            <xs:pattern value="\d{10}"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
